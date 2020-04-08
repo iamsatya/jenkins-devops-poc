@@ -5,7 +5,7 @@ resource "aws_instance" "instance" {
 
   tags = {
     "type" = "terraform-test-instance"
-	"Name" = "APPServers"
+	"Name" = "APP-Servers"
   }
 }
 
