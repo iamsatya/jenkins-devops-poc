@@ -6,7 +6,7 @@ pipeline{
   stages{
     stage('S3bucket'){
 	  steps{
-	    sh "ansible-playbook s3backend.yml"
+	    sh "ansible-playbook s3bucket.yml"
 		}
 	}
 	stage('terraform-init'){
