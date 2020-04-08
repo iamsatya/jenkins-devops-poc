@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  become: yes
   tasks:
     - name: install Boto3 Python
       pip:
