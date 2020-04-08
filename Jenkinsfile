@@ -6,7 +6,7 @@ pipeline{
   stages{
     stage('S3bucket'){
 	  steps{
-	    sh "ansible-playbook s3bucket.yml"
+	    sh "ansible-playbook --become False s3bucket.yml"
 		}
 	}
 	stage('terraform-init'){
