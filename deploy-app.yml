@@ -1,7 +1,6 @@
 ---
 - hosts: all
   gather_facts: no
-  become: yes
   tasks:
     - name: copy WAR file to APP servers.
       copy: 
