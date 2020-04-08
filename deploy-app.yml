@@ -6,4 +6,15 @@
     - name: copy WAR file to APP servers.
       copy: 
         src: "{{ WORKSPACE }}/target/*.war"
-        dest: /opt/
+        dest: /opt/tomcat/webapps
+    
+    - name: stop tomcat application
+      systemd:
+        name: tomcat
+        state: stopped
+    
+    - name: start tomcat application
+      systemd:
+        name: tomcat
+        state: started    
+   

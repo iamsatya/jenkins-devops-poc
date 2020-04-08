@@ -29,7 +29,24 @@ pipeline{
                 sh 'mvn -Dmaven.test.failure.ignore=true clean test compile package' 
             }
         }
-  }
+	stage ('inventory') {
+	  steps {
+	    sh 'aws ec2 describe-instances --filter Name=tag-key,Values=Name --query "Reservations[*].Instances[*].{Instance:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value}" --output text | grep APP-Servers |cut -f 1 > dynainvent.aws'
+      }   
+    }
+    
+	stage('tomcat-install'){
+	  steps{
+	    sh "ansible-playbook -i dynainvent.aws tomcat-install.yml"
+		}
+	}
+    
+	stage('deploy'){
+	  steps{
+		sh "ansible-playbook -i dynainvent.aws deploy-app.yml"
+		}
+	}
+ }
 }  
 
 def getTerraformPath(){
