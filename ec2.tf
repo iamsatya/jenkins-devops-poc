@@ -10,8 +10,8 @@ resource "aws_instance" "instance" {
 }
 
 resource "aws_security_group" "sg" {
-  name: "Allow_Tomcat"
-  description: "Allow Tomcat port inbound"
+  name= "Allow_Tomcat"
+  description= "Allow Tomcat port inbound"
   ingress {
     description = "Tomcat from Internet"
     from_port   = 8080
