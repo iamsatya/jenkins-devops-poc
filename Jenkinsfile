@@ -34,8 +34,8 @@ pipeline{
         }
 	stage ('inventory') {
 	  steps {
-	    sh "chmod +x inventoryaws"
-		sh "./inventoryaws"
+	    sh "chmod +x inventoryaws.sh"
+		sh "./inventoryaws.sh"
       }   
     }
     
