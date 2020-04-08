@@ -11,7 +11,7 @@ data "aws_ami" "ami" {
 
 resource "aws_instance" "instance" {
   instance_type = "t2.micro"
-  ami           = "${data.aws_ami.ami.id}"
+  ami           = "data.aws_ami.ami.id"
 
   tags = {
     "type" = "terraform-test-instance"

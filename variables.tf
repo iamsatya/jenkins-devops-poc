@@ -4,5 +4,5 @@ variable "region" {
 
 variable "profile" {
     description = "AWS credentials profile you want to use"
-	value = "default"
+	default = "default"
 }
