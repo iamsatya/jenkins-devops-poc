@@ -26,7 +26,7 @@ pipeline{
         }
     stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true clean test build' 
+                sh 'mvn -Dmaven.test.failure.ignore=true clean test compile package' 
             }
         }
   }
