@@ -5,5 +5,5 @@
   tasks:
     - name: copy WAR file to APP servers.
       copy: 
-        src: "{{ WORKSPACE }}/target/*.war
+        src: "{{ WORKSPACE }}/target/*.war"
         dest: /opt/
