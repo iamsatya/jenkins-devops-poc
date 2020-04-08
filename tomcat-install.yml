@@ -5,7 +5,7 @@
   tasks:
     - name: install java on servers
       yum: 
-        name: {{ item }}
+        name: "{{ item }}"
         state: present
       with_items:
         - java-1.8.0-openjdk.x86_64
