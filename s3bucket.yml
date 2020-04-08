@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: install Boto3 Python
+      pip:
+        name: boto3
+        state: present
+      
+    - name: create S3 Backend
+      s3_bucket:
+        name: jenkins-devops-poc-backend
+        state: present

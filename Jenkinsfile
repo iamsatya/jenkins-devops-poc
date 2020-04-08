@@ -4,9 +4,15 @@ pipeline{
     PATH = "${PATH}:${getTerraformPath()}"
   }
   stages{
-    stage('terraform-init'){
+    stage('S3bucket'){
+	  steps{
+	    sh "ansible-playbook s3backend.yml"
+		}
+	}
+	stage('terraform-init'){
 	  steps{
 	    sh "terraform init"
+		sh "ansible-playbook terraformbackend.yml"
 		sh "terraform apply -auto-approve"
 		}
 	}
