@@ -6,7 +6,9 @@ pipeline{
   stages{
     stage('S3bucket'){
 	  steps{
-	    sh "ansible-playbook -b s3bucket.yml"
+	    sh "cp /etc/ansible/ansible.cfg-org ."
+		sh "mv ansible.cfg-org ansible.cfg"
+		sh "ansible-playbook s3bucket.yml"
 		}
 	}
 	stage('terraform-init'){
@@ -14,6 +16,7 @@ pipeline{
 	    sh "terraform init"
 		sh "ansible-playbook terraformbackend.yml"
 		sh "terraform apply -auto-approve"
+		sh "rm -rf ansible.cfg"
 		}
 	}
 	stage ('Initialize') {
