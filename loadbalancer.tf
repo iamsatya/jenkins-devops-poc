@@ -4,6 +4,10 @@ resource "aws_lb" "applb" {
   subnets = data.aws_subnet_ids.default.ids
   security_groups   = [aws_security_group.albsg.id]
 }
+
+data "aws_vpc" "default" {
+  default          = true
+  }
   
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.applb.arn
