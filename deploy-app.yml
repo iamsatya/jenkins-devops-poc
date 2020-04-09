@@ -22,8 +22,8 @@
         name: tomcat
         state: started
         
-     - name: Backup ROOT
-       command: mv /opt/tomcat/webapps/ROOT /opt/tomcat/webapps/ROOT-org
+    - name: backup ROOT
+      command: mv /opt/tomcat/webapps/ROOT /opt/tomcat/webapps/ROOT-org
        
-     - name: copy app to ROOT
-       command: cp -Rpf /opt/tomcat/webapps/app /opt/tomcat/webapps/ROOT
+    - name: copy app to ROOT
+      command: cp -Rpf /opt/tomcat/webapps/app /opt/tomcat/webapps/ROOT
