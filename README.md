@@ -1,4 +1,4 @@
-# java-tomcat-maven-example
+# java-tomcat-maven for online learning with pipeline view added with some failed job 
 
 This is an example ready-to-deploy java web application built for Tomcat using Maven and webapp-runner.
 
