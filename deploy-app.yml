@@ -7,7 +7,8 @@
     - name: copy WAR file to APP servers.
       copy: 
         src: "{{ item }}"
-        dest: /opt/tomcat/webapps
+        dest: /opt/tomcat/webapps/app.war
+        follow: no
       with_fileglob:
         - "{{ appsrc }}/*war"
  
