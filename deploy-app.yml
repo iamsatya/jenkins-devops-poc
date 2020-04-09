@@ -4,7 +4,7 @@
   tasks:
     - name: copy WAR file to APP servers.
       copy: 
-        src: {{ lookup('env','WORKSPACE') }}/target/*.war
+        src: "{{ lookup('env','WORKSPACE') }}"/target/*.war
         dest: /opt/tomcat/webapps
     
     - name: stop tomcat application
