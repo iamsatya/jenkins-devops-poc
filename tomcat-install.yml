@@ -17,13 +17,19 @@
         state: directory
         mode: '0755'
     
+    - name: create user for tomcat
+      user:
+        name: tomcat
+        shell: /bin/bash
+        home: /opt/tomcat
+    
     - name: download tomcat binary
       get_url:
-        url: http://apachemirror.wuchna.com/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz
+        url: http://apachemirror.wuchna.com/tomcat/tomcat-8/v8.5.53/bin/apache-tomcat-8.5.53.tar.gz
         dest: /tmp/
  
     - name: extract tomcat binary
-      command: tar xvf apache-tomcat-8.5.47.tar.gz -C /opt/tomcat --strip-components=1
+      command: tar xvf apache-tomcat-8.5.53.tar.gz -C /opt/tomcat --strip-components=1
         
     - name: create systemd tomcat file
       copy:
@@ -45,8 +51,8 @@
           Djava.security.egd=file:/dev/./urandom'
           ExecStart=/opt/tomcat/bin/startup.sh
           ExecStop=/bin/kill -15 $MAINPID
-          User=root
-          Group=root
+          User=tomcat
+          Group=tomcat
           UMask=0007
           RestartSec=10
           Restart=always
@@ -61,6 +67,3 @@
         name: tomcat
         state: started
         enabled: yes
-        
-    
-     
