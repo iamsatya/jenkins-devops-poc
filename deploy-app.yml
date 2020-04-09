@@ -20,5 +20,10 @@
     - name: start tomcat application
       systemd:
         name: tomcat
-        state: started    
-   
+        state: started
+        
+     - name: Backup ROOT
+       command: mv /opt/tomcat/webapps/ROOT /opt/tomcat/webapps/ROOT-org
+       
+     - name: copy app to ROOT
+       command: cp -Rpf /opt/tomcat/webapps/app /opt/tomcat/webapps/ROOT
