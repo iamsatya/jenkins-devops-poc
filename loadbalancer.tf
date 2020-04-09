@@ -8,6 +8,10 @@ resource "aws_lb" "applb" {
 data "aws_vpc" "default" {
   default          = true
   }
+
+data "aws_subnet_ids" "default" {
+  vpc_id           = data.aws_vpc.default.id
+  }  
   
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.applb.arn
