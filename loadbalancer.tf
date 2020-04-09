@@ -68,6 +68,6 @@ resource "aws_lb_target_group_attachment" "app2tg" {
   port             = 8080
 }
 
-output "lburl" {
+output "lb_address" {
   value     = aws_lb.applb.public_dns
   }
