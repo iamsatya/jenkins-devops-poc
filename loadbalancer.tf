@@ -59,11 +59,11 @@ resource "aws_lb_target_group"  "apptg" {
 resource "aws_lb_target_group_attachment" "app1tg" {
   target_group_arn = aws_lb_target_group.apptg.arn
   target_id        = aws_instance.app1.id
-  port             = 8080
+  port             = 80
 }
 
 resource "aws_lb_target_group_attachment" "app2tg" {
   target_group_arn = aws_lb_target_group.apptg.arn
   target_id        = aws_instance.app2.id
-  port             = 8080
+  port             = 80
 }
