@@ -29,7 +29,10 @@
         dest: /tmp/
  
     - name: extract tomcat binary
-      command: tar xvf /tmp/apache-tomcat-8.5.53.tar.gz -C /opt/tomcat --strip-components=1      
+      command: tar xvf /tmp/apache-tomcat-8.5.53.tar.gz -C /opt/tomcat --strip-components=1
+
+    - name: Changing ownership to tomcat user
+      command: chown -R tomcat:tomcat /opt/tomcat 
        
     - name: create systemd tomcat file
       copy:
