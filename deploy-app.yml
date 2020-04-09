@@ -1,13 +1,15 @@
 ---
 - hosts: all
   gather_facts: no
+  vars:
+    appsrc: "{{ lookup('env','WORKSPACE') }}/target/"
   tasks:
     - name: copy WAR file to APP servers.
       copy: 
         src: "{{ item }}"
         dest: /opt/tomcat/webapps
       with_fileglob:
-        - '"{{ lookup('env','WORKSPACE') }}/target/*.war"'
+        - "{{ appsrc }}/*war"
  
     - name: stop tomcat application
       systemd:
