@@ -58,11 +58,11 @@ pipeline{
     }
 	
 	
-	stage('Feedback'){
-	  steps{
+	post {
+	  always {
 	    slackSend baseUrl: 'https://hooks.slack.com/services/',
         channel: '#devops-cicd', color: 'good',
-        message: ' message: \'"Status of pipeline: ${currentBuild.currentResult}"',
+        message: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
         teamDomain: 'govanin.slack.com',
         tokenCredentialId: 'slack-token'
 	    }
