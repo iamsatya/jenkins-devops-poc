@@ -59,15 +59,16 @@ pipeline{
 	
 	
 	stage('Feedback'){
-	  slackSend botUser: true, 
-	  channel: '#devops-cicd', 
-	  color: 'good', 
-	  message: '"Status of pipeline: ${currentBuild.currentResult}"',
-	  notifyCommitters: true, 
-	  teamDomain: 'govanin.slack.com',
-	  tokenCredentialId: 'slack-token'
-	}
-	
+	  steps{
+	    slackSend botUser: true, 
+	    channel: '#devops-cicd', 
+	    color: 'good', 
+	    message: '"Status of pipeline: ${currentBuild.currentResult}"',
+	    notifyCommitters: true, 
+	    teamDomain: 'govanin.slack.com',
+	    tokenCredentialId: 'slack-token'
+	    }
+    }
  }
 }  
 
