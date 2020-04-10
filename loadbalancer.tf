@@ -67,3 +67,21 @@ resource "aws_lb_target_group_attachment" "app2tg" {
   target_id        = aws_instance.app2.id
   port             = 80
 }
+
+resource "aws_lb_listener_rule" "applr" {
+  listener_arn     = aws_lb_listener.http.arn
+  priority         = 100
+  condition {
+    field          = "path-pattern"
+	values         = ["*"]
+	}
+
+  action {
+    type           = "forward"
+	target_group_arn = aws_lb_target_group.apptg.arn
+	}
+}
+
+output "alb_dns_name" {
+  value           = aws_lb.applb.dns_name
+  }
