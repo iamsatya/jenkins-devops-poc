@@ -56,9 +56,9 @@ pipeline{
         probelyScan targetId: 'YmxppLPT5uwC', credentialsId: 'probely-security'
       } 
     }
-	
-	
-	post {
+ }
+ 
+  post {
 	  always {
 	    slackSend baseUrl: 'https://hooks.slack.com/services/',
         channel: '#devops-cicd', color: 'good',
@@ -67,7 +67,6 @@ pipeline{
         tokenCredentialId: 'slack-token'
 	    }
     }
- }
 }  
 
 def getTerraformPath(){
