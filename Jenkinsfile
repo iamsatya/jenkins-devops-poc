@@ -57,10 +57,15 @@ pipeline{
       } 
     }
 	
-	stage('TF-Destroy'){
-	  steps{
-	    sh "terraform destroy -auto-approve"
-		}
+	
+	stage('Feedback'){
+	  slackSend botUser: true, 
+	  channel: '#devops-cicd', 
+	  color: 'good', 
+	  message: '"Status of pipeline: ${currentBuild.currentResult}"',
+	  notifyCommitters: true, 
+	  teamDomain: 'govanin.slack.com',
+	  tokenCredentialId: 'slack-token'
 	}
 	
  }
