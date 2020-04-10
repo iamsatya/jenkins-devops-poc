@@ -47,6 +47,7 @@ resource "aws_lb_target_group"  "apptg" {
   
   health_check {
     path            = "/"
+	port            = 8080
     protocol        = "HTTP"
     matcher         = "200"
     interval        = 15
