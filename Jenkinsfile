@@ -66,17 +66,14 @@ pipeline{
         teamDomain: 'govanin.slack.com',
         tokenCredentialId: 'slack-token'
 	    }
+		
+	  success {
+	    sh label: '', returnStatus: true, script: 'wget --spider www.cloudlinuxacademy.com'
+		}
     }
-	
-  post {
-     always {
-	   sh label: '', returnStatus: true, script: 'wget --spider www.cloudlinuxacademy.com'
-	 }
-	}
 }  
 
 def getTerraformPath(){
   def tfHome = tool name: 'terraform12', type: 'terraform'
   return tfHome
   }
- 
