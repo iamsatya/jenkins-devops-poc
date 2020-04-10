@@ -4,14 +4,14 @@ pipeline{
     PATH = "${PATH}:${getTerraformPath()}"
   }
   stages{
-    stage('S3bucket'){
+    stage('TF-S3Bucket'){
 	  steps{
 	    sh "cp /etc/ansible/ansible.cfg-org ."
 		sh "mv ansible.cfg-org ansible.cfg"
 		sh "ansible-playbook s3bucket.yml"
 		}
 	}
-	stage('terraform-init'){
+	stage('TF-Backend'){
 	  steps{
 	    sh "terraform init"
 		sh "ansible-playbook terraformbackend.yml"
@@ -19,7 +19,7 @@ pipeline{
 		sh "rm -rf ansible.cfg"
 		}
 	}
-	stage ('Initialize') {
+	stage ('APP-ENV') {
             steps {
                 sh '''
                     echo "PATH = ${PATH}"
@@ -29,25 +29,31 @@ pipeline{
         }
     stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true clean test compile package' 
+                sh 'mvn -Dmaven.test.failure.ignore=true clean compile test package' 
             }
         }
-	stage ('inventory') {
+	stage ('AWS-Inventory') {
 	  steps {
 	    sh "chmod +x inventoryaws.sh"
 		sh "./inventoryaws.sh"
       }   
     }
     
-	stage('tomcat-install'){
+	stage('APPServer-Config'){
 	  steps{
 	    sh "ansible-playbook -i dynainvent.aws tomcat-install.yml"
 		}
 	}
     
-	stage('deploy'){
+	stage('APP-Deploy'){
 	  steps{
 		sh "ansible-playbook -i dynainvent.aws deploy-app.yml"
+		}
+	}
+	
+	stage('TF-Destroy'){
+	  steps{
+	    sh "terraform destroy -auto-approve"
 		}
 	}
  }
