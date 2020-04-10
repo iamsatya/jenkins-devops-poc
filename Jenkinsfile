@@ -67,6 +67,12 @@ pipeline{
         tokenCredentialId: 'slack-token'
 	    }
     }
+	
+  post {
+     always {
+	   sh label: '', returnStatus: true, script: 'wget --spider www.cloudlinuxacademy.com'
+	 }
+	}
 }  
 
 def getTerraformPath(){
