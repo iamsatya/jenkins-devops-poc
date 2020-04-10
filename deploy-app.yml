@@ -23,7 +23,7 @@
         state: started
         
     - name: backup ROOT
-      command: mv /opt/tomcat/webapps/ROOT /opt/tomcat/webapps/ROOT-org
+      command: mv /opt/tomcat/webapps/ROOT /opt/tomcat/webapps/ROOT-{{ lookup('env','BUILD_NUMBER') }}
        
     - name: copy app to ROOT
       command: cp -Rpf /opt/tomcat/webapps/app /opt/tomcat/webapps/ROOT
