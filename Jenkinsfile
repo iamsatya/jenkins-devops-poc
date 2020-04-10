@@ -51,11 +51,12 @@ pipeline{
 		}
 	}
 	
-	stage('TF-Destroy'){
-	  steps{
-	    sh "terraform destroy -auto-approve"
-		}
-	}
+	stage('Scan with Probely') {
+      steps {
+        probelyScan targetId: 'YmxppLPT5uwC', credentialsId: 'probely-security'
+      } 
+    } 
+	
  }
 }  
 
