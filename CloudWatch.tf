@@ -56,6 +56,7 @@ resource "aws_route53_health_check" "cla-hc" {
 
 resource "aws_cloudwatch_metric_alarm" "cla-hc" {
   alarm_name          = "cla_healthcheck_failed"
+  region              = "us-east-1"
   namespace           = "AWS/Route53"
   metric_name         = "HealthCheckStatus"
   comparison_operator = "LessThanThreshold"
@@ -70,8 +71,8 @@ resource "aws_cloudwatch_metric_alarm" "cla-hc" {
   }
 
   alarm_description         = "This metric monitors cla.com whether the service endpoint is down or not."
-  alarm_actions             = [ "${aws_sns_topic.devops.arn}" ]
-  insufficient_data_actions = [ "${aws_sns_topic.devops.arn}" ]
+  #alarm_actions             = [ "${aws_sns_topic.devops.arn}" ]
+  #insufficient_data_actions = [ "${aws_sns_topic.devops.arn}" ]
   treat_missing_data        = "breaching"
 }
 
