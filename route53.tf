@@ -9,32 +9,3 @@ resource "aws_route53_record" "www" {
   ttl     = "60"
   records = ["${aws_lb.applb.dns_name}"]
 }
-
-resource "aws_sns_topic" "devops" {
-  name = "devops"
-  display_name = "devops"
-}
-
-data "aws_sns_topic" "devops" {
-  name         = "admin-sns-email-topic"
-}
-
-resource "aws_sns_topic_subscription" "devops-team" {
-  topic_arn = aws_sns_topic.devops.arn
-  protocol  = "email"
-  endpoint  = "satyapanuganti@gmail.com"
-}
-
-resource "aws_route53_health_check" "cla" {
-  fqdn              = "www.cloudlinuxacadem.com"
-  port              = 80
-  type              = "HTTP"
-  resource_path     = "/"
-  failure_threshold = "5"
-  request_interval  = "30"
-  sns_topic         = "${data.aws_sns_topic.devops.arn}"
-  
-   tags = {
-    Name = "cla-health-check"
-  }
-}
