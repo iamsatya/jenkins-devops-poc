@@ -15,7 +15,7 @@ resource "aws_sns_topic" "devopsnv" {
   name = "alarms-topicnv"
   
   provisioner "local-exec" {
-    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.alarms_email}"
+    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.alarms_email} --region us-east-1"
   }
 }
 
