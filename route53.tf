@@ -27,7 +27,7 @@ resource "aws_sns_topic_subscription" "devops-team" {
   endpoint  = "satyanarayana.pr@sonata-software.com"
 }
 
-module "health_check-cloudlinuxacademy" {
+module "health_check-google" {
   source            = "https://github.com/Nuagic/terraform-aws-route53-health-check"
   fqdn              = "www.cloudlinuxacadem.com"
   port              = 80
