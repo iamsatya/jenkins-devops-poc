@@ -27,8 +27,7 @@ resource "aws_sns_topic_subscription" "devops-team" {
   endpoint  = "satyanarayana.pr@sonata-software.com"
 }
 
-module "health_check-google" {
-  source            = "https://github.com/Nuagic/terraform-aws-route53-health-check"
+resource "aws_route53_health_check" "cla" {
   fqdn              = "www.cloudlinuxacadem.com"
   port              = 80
   type              = "HTTP"
@@ -36,5 +35,8 @@ module "health_check-google" {
   failure_threshold = "5"
   request_interval  = "30"
   sns_topic         = "${aws_sns_topic.devops.id}"
-  name              = "APP alarm"
+  
+   tags = {
+    Name = "cla-health-check"
+  }
 }
