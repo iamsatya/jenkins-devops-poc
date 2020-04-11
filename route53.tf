@@ -15,6 +15,10 @@ resource "aws_sns_topic" "devops" {
   display_name = "devops"
 }
 
+data "aws_sns_topic" "devops" {
+  name         = "admin-sns-email-topic"
+}
+
 resource "aws_sns_topic_subscription" "devops-team" {
   topic_arn = aws_sns_topic.devops.arn
   protocol  = "email"
@@ -28,7 +32,7 @@ resource "aws_route53_health_check" "cla" {
   resource_path     = "/"
   failure_threshold = "5"
   request_interval  = "30"
-  sns_topic         = "${aws_sns_topic.devops.id}"
+  sns_topic         = "${data.aws_sns_topic.devops.arn}"
   
    tags = {
     Name = "cla-health-check"
