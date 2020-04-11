@@ -19,7 +19,7 @@ resource "aws_cloudwatch_metric_alarm" "app1cpu" {
   alarm_description         = "This metric monitors ec2 cpu utilization"
   alarm_actions             = [ "${aws_sns_topic.devops.arn}" ]
 
-  dimensions {
+  dimensions = {
     InstanceId = "${aws_instance.app1.id}"
   }
 }
@@ -36,7 +36,7 @@ resource "aws_cloudwatch_metric_alarm" "app1health" {
   alarm_description         = "This metric monitors ec2 health status"
   alarm_actions             = [ "${aws_sns_topic.devops.arn}" ]
 
-  dimensions {
+  dimensions = {
     InstanceId = "${aws_instance.app1.id}"
   }
 }
@@ -87,7 +87,7 @@ resource "aws_cloudwatch_metric_alarm" "app2cpu" {
   alarm_description         = "This metric monitors ec2 cpu utilization"
   alarm_actions             = [ "${aws_sns_topic.devops.arn}" ]
 
-  dimensions {
+  dimensions = {
     InstanceId = "${aws_instance.app2.id}"
   }
 }
@@ -104,7 +104,7 @@ resource "aws_cloudwatch_metric_alarm" "app2health" {
   alarm_description         = "This metric monitors ec2 health status"
   alarm_actions             = [ "${aws_sns_topic.devops.arn}" ]
 
-  dimensions {
+  dimensions = {
     InstanceId = "${aws_instance.app2.id}"
   }
 }
