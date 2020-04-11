@@ -10,3 +10,9 @@ terraform {
     region = "ap-south-1"
   }
 }
+
+provider "aws" {
+  profile = "${var.profile}"
+  alias   = "us-east-1"
+  region  = "us-east-1"
+}
