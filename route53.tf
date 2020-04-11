@@ -21,12 +21,6 @@ resource "aws_sns_topic_subscription" "devops-team" {
   endpoint  = "satyapanuganti@gmail.com"
 }
 
-resource "aws_sns_topic_subscription" "devops-team" {
-  topic_arn = aws_sns_topic.devops.arn
-  protocol  = "email"
-  endpoint  = "satyanarayana.pr@sonata-software.com"
-}
-
 resource "aws_route53_health_check" "cla" {
   fqdn              = "www.cloudlinuxacadem.com"
   port              = 80
