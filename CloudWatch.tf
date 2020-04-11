@@ -4,6 +4,11 @@ resource "aws_sns_topic" "devops" {
   provisioner "local-exec" {
     command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.alarms_email}"
   }
+  
+  provisioner "local-exec" {
+    when = "destroy"
+    command = "aws sns list-subscriptions-by-topic --topic-arn ${self.arn} --output text --query 'Subscriptions[].[SubscriptionArn]' | grep '^arn:' | xargs -rn1 aws sns unsubscribe --subscription-arn"
+}
 }
 
 

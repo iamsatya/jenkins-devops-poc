@@ -17,6 +17,11 @@ resource "aws_sns_topic" "devopsnv" {
   provisioner "local-exec" {
     command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.alarms_email} --region us-east-1"
   }
+  
+  provisioner "local-exec" {
+  when = "destroy"
+  command = "aws sns list-subscriptions-by-topic --topic-arn ${self.arn} --output text --query 'Subscriptions[].[SubscriptionArn]' --region us-east-1 | grep '^arn:' | xargs -rn1 aws sns unsubscribe --subscription-arn"
+}
 }
 
 resource "aws_cloudwatch_metric_alarm" "cla-hc" {
