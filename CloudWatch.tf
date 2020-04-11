@@ -50,7 +50,7 @@ resource "aws_route53_health_check" "cla-hc" {
   request_interval  = "30"
 
   tags = {
-    Name = cla-hc
+    "Name" = "cla-hc"
   }
 }
 
