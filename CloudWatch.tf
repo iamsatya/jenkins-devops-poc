@@ -56,7 +56,6 @@ resource "aws_route53_health_check" "cla-hc" {
 
 resource "aws_cloudwatch_metric_alarm" "cla-hc" {
   alarm_name          = "cla_healthcheck_failed"
-  region              = "us-east-1"
   namespace           = "AWS/Route53"
   metric_name         = "HealthCheckStatus"
   comparison_operator = "LessThanThreshold"
