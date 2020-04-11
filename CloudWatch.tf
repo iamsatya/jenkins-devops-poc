@@ -58,11 +58,11 @@ resource "aws_cloudwatch_metric_alarm" "cla-hc" {
   alarm_name          = "cla_healthcheck_failed"
   namespace           = "AWS/Route53"
   metric_name         = "HealthCheckStatus"
-  comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "1"
+  comparison_operator = "LessThanThreshold"
+  evaluation_periods  = "2"
   period              = "60"
   statistic           = "Average"
-  threshold           = "0"
+  threshold           = "1"
   unit                = "None"
 
   dimensions = {
