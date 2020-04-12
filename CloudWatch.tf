@@ -88,8 +88,8 @@ resource "aws_cloudwatch_metric_alarm" "httpcode_target_5XX_count" {
   metric_name         = "HTTPCode_Target_5XX_Count"
   namespace           = "AWS/ApplicationELB"
   period              = "60"
-  statistic           = "Sum"
-  threshold           = "0"
+  statistic           = "Average"
+  threshold           = "60"
   alarm_description   = "Average 5XX target group error code count is too high"
   alarm_actions       = [ "${aws_sns_topic.devops.arn}" ]
 
@@ -108,6 +108,7 @@ resource "aws_cloudwatch_metric_alarm" "httpcode_lb_5xx_count" {
   period              = "60"
   statistic           = "Sum"
   threshold           = "0"
+  treat_missing_data  = "notBreaching"
   alarm_description   = "Average ALB 5XX load balancer error code count is too high"
   alarm_actions       = [ "${aws_sns_topic.devops.arn}" ]
 
