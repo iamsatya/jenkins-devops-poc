@@ -19,8 +19,8 @@ resource "aws_sns_topic" "devopsnv" {
   }
   
   provisioner "local-exec" {
-  when = "destroy"
-  command = "aws sns list-subscriptions-by-topic --topic-arn ${self.arn} --output text --query 'Subscriptions[].[SubscriptionArn]' --region us-east-1 | grep '^arn:' | xargs -rn1 aws sns unsubscribe --subscription-arn"
+    when = "destroy"
+    command = "aws sns list-subscriptions-by-topic --topic-arn ${self.arn} --output text --query 'Subscriptions[].[SubscriptionArn]' --region us-east-1 | grep '^arn:' | xargs -rn1 aws sns unsubscribe --subscription-arn"
 }
 }
 
