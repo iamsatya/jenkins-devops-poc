@@ -82,13 +82,13 @@ resource "aws_cloudwatch_metric_alarm" "app2health" {
 
 
 resource "aws_cloudwatch_metric_alarm" "httpcode_target_5XX_count" {
-  alarm_name          = "alb-tg-high5XXCount"
+  alarm_name          = "tgroup-high5XXCount"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "5"
   metric_name         = "HTTPCode_Target_5XX_Count"
   namespace           = "AWS/ApplicationELB"
   period              = "60"
-  statistic           = "sum"
+  statistic           = "Sum"
   threshold           = "0"
   treat_missing_data  = "notBreaching"
   alarm_description   = "Average 5XX target group error code count is too high"
