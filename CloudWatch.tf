@@ -84,10 +84,10 @@ resource "aws_cloudwatch_metric_alarm" "app2health" {
 resource "aws_cloudwatch_metric_alarm" "httpcode_target_5XX_count" {
   alarm_name          = "alb-tg-high5XXCount"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 5
+  evaluation_periods  = "5"
   metric_name         = "HTTPCode_Target_5XX_Count"
   namespace           = "AWS/ApplicationELB"
-  period              = 60
+  period              = "60"
   statistic           = "Sum"
   threshold           = "0"
   alarm_description   = "Average 5XX target group error code count is too high"
@@ -102,10 +102,10 @@ resource "aws_cloudwatch_metric_alarm" "httpcode_target_5XX_count" {
 resource "aws_cloudwatch_metric_alarm" "httpcode_lb_5xx_count" {
   alarm_name          = "alb-high5XXCount"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 5
+  evaluation_periods  = "5"
   metric_name         = "HTTPCode_ELB_5XX_Count"
   namespace           = "AWS/ApplicationELB"
-  period              = 60
+  period              = "60"
   statistic           = "Sum"
   threshold           = "0"
   alarm_description   = "Average ALB 5XX load balancer error code count is too high"
@@ -119,12 +119,12 @@ resource "aws_cloudwatch_metric_alarm" "httpcode_lb_5xx_count" {
 resource "aws_cloudwatch_metric_alarm" "target_response_time_average" {
   alarm_name          = "alb-tg-highResponseTime"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 5
+  evaluation_periods  = "5"
   metric_name         = "TargetResponseTime"
   namespace           = "AWS/ApplicationELB"
-  period              = 60
+  period              = "60"
   statistic           = "Average"
-  threshold           = 50
+  threshold           = "50"
   alarm_description   = "Average response time is too high"
   alarm_actions       = [ "${aws_sns_topic.devops.arn}" ]
 
@@ -138,12 +138,12 @@ resource "aws_cloudwatch_metric_alarm" "target_response_time_average" {
 resource "aws_cloudwatch_metric_alarm" "healthy_host_count" {
   alarm_name          = "alb-healthy-host-count"
   comparison_operator = "LessThanThreshold"
-  evaluation_periods  = 5
+  evaluation_periods  = "5"
   metric_name         = "HealthyHostCount"
   namespace           = "AWS/ApplicationELB"
-  period              = 60
+  period              = "60"
   statistic           = "Average"
-  threshold           = 2
+  threshold           = "2"
   alarm_description   = "Healthy Host count"
   alarm_actions       = [ "${aws_sns_topic.devops.arn}" ]
 
