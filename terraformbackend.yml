@@ -11,3 +11,4 @@
           region: "ap-south-1"
           bucket: "jenkins-devops-poc-backend"
           key: "backend.tfstate"
+          dynamodb_table: "my-backend-lock"

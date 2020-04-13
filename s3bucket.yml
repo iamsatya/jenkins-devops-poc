@@ -11,3 +11,14 @@
       s3_bucket:
         name: jenkins-devops-poc-backend
         state: present
+        
+    - name: dynamodb lock
+      dynamodb_table:
+        name: my-backend-lock
+        region: ap-south-1
+        hash_key_name: LockID
+        hash_key_type: STRING
+        read_capacity: 2
+        write_capacity: 2
+        tags:
+          tag_name: dynamolock    
