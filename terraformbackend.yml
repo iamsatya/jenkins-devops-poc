@@ -7,6 +7,7 @@
       terraform:
         project_path: './'
         state: "{{ state }}"
+        lock: yes
         backend_config:
           region: "ap-south-1"
           bucket: "jenkins-devops-poc-backend"
