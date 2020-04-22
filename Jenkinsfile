@@ -4,7 +4,7 @@ pipeline{
     PATH = "${PATH}:${getTerraformPath()}"
   }
   stages{
-    stage('TF-S3Bucket'){
+    stage('S3Bucket'){
 	  steps{
 	    sh "cp /etc/ansible/ansible.cfg-org ."
 		sh "mv ansible.cfg-org ansible.cfg"
@@ -19,7 +19,7 @@ pipeline{
 		sh "rm -rf ansible.cfg"
 		}
 	}
-	stage ('APP-ENV') {
+	stage ('BUILD-ENV') {
             steps {
                 sh '''
                     echo "PATH = ${PATH}"
@@ -51,7 +51,7 @@ pipeline{
 		}
 	}
 	
-	stage('Scan with Probely') {
+	stage('SEC-TEST') {
       steps {
         probelyScan targetId: 'YmxppLPT5uwC', credentialsId: 'probely-security'
       } 
